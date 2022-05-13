@@ -1,6 +1,6 @@
 #!/bin/sh
 
-readonly vpn_PATH="/your/path/to/folder/config/vpn"
+readonly vpn_PATH="$HOME"
 
 openvpn=$(pgrep -a openvpn)
 openfortivpn=$(pgrep -a openfortivpn)

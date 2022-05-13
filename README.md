@@ -6,6 +6,13 @@ VPN module for openfortivpn and openvpn to view status and toggle vpn
 - Yad (Yet Another Display)
 - Polkit
 
+## Configuration
+
+You can set `vpn_PATH` in vpn_toggle.sh.
+This is used for Yad started path
+
+By default the script is set to `$HOME`
+
 ## Usage
 
 The script expects parameters :
