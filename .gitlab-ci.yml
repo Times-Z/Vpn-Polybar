@@ -9,13 +9,17 @@ deploy:github:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client git -y )'
     - mkdir -p  ~/.ssh
   script:
-    - echo ${GITHUB_SSH_PRIVATE} | base64 -d > ~/.ssh/id_rsa
-    - echo ${GITHUB_SSH_PUBLIC} | base64 -d > ~/.ssh/id_rsa.pub
-    - chmod 600 -R ~/.ssh
-    - eval $(ssh-agent -s)
-    - ssh-add ~/.ssh/id_rsa
-    - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-    - git push publicGithub HEAD:main
+    - |
+      echo ${GITHUB_SSH_PRIVATE} | base64 -d > ~/.ssh/id_rsa
+      echo ${GITHUB_SSH_PUBLIC} | base64 -d > ~/.ssh/id_rsa.pub
+      chmod 600 -R ~/.ssh
+      eval $(ssh-agent -s)
+      ssh-add ~/.ssh/id_rsa
+      ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+      if [ "$(git remote show | grep publicGithub)" == "" ] ; then
+        git remote add publicGithub git@github.com:Times-Z/Vpn-Polybar.git
+      fi
+      git push -u publicGithub HEAD:main
   only:
     - main
   when: manual
