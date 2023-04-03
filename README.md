@@ -8,21 +8,17 @@ VPN module for openfortivpn and openvpn to view status and toggle vpn
 
 ## Configuration
 
-You can set `vpn_PATH` in vpn_toggle.sh.
+You can set `VPN_PATH` in vpn.sh.
 This is used for Yad started path
 
 By default the script is set to `$HOME`
 
+You can change color and icon displayed in vpn.sh.
+
 ## Usage
 
-The script expects parameters :
- - `vpn_status.sh` display the status of vpn :
-    - No VPN connection : ![Demo gif](./.assets/no_vpn.png)
-    - Vpn connected (the name is config file name) : ![Demo gif](./.assets/vpn_connected.png)
- - `vpn_toggle.sh` toogle vpn connection :
-    - Check if a openvpn or openfortivpn is running
-    - If a process is running, display Yad as kill window (no exit button, just close on unfocus)
-    - if not, open Yad as file path grabber and connect start a process
+- No VPN connection : ![Demo gif](./.assets/no_vpn.png)
+- Vpn connected (the name is config file name) : ![Demo gif](./.assets/vpn_connected.png)
 
 Example module for polybar
 
@@ -31,8 +27,8 @@ Example module for polybar
 
 type = custom/script
 interval = 1
-exec = ~/.config/polybar/scripts/vpn_status.sh
-click-left = ~/.config/polybar/scripts/vpn_toggle.sh
+exec = ~/.config/polybar/scripts/vpn.sh --show
+click-left = ~/.config/polybar/scripts/vpn.sh --toggle
 
 ```
 ## Demo
